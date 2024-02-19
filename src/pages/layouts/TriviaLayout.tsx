@@ -1,34 +1,35 @@
 import { FormProvider, useForm } from "react-hook-form";
-import { Outlet } from "react-router-dom";
-import { Questions } from "../../interfaces";
-import { CircularProgressbar } from "react-circular-progressbar";
+import { Outlet, useNavigate } from "react-router-dom";
+import { FormQuestions } from "../../lib/interfaces";
 import StepperProvider from "@/components/providers/StepperProvider";
 
 const TriviaLayout = () => {
-  const form = useForm<Questions>({
+  const navigate = useNavigate();
+  const form = useForm<FormQuestions>({
     defaultValues: {
       hairType: "",
       hairWash: "",
       hairProducts: "",
-      hairTroubling: "",
+      hairConcern: "",
       hairColor: "",
     },
   });
 
-  const onSubmit = (data: Questions) => {
-    console.log(data);
+  const onSubmit = (data: FormQuestions) => {
+    navigate("/results", { state: { formData: data }, replace: true });
   };
 
   return (
-    <div className="relative grid items-center justify-center h-screen w-full">
+    <div className="container max-w-[1440px] relative grid items-center justify-center h-screen">
       <StepperProvider>
-        <div className="max-w-[985px]">
+        <div className="lg:max-w-[940px] xl:max-w-[985px] order-2">
           <FormProvider {...form}>
-            <div className="w-full flex gap-8 justify-between">
-              <form onSubmit={form.handleSubmit(onSubmit)}>
-                <Outlet />
-              </form>
-            </div>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex gap-8 justify-between"
+            >
+              <Outlet />
+            </form>
           </FormProvider>
         </div>
       </StepperProvider>

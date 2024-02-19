@@ -4,10 +4,10 @@ import {
   HairProductBenefit,
   HairType,
   HairWashFrequency,
-} from "@/constants";
+} from "@/lib/interfaces";
 import Button from "./ui/Button";
 import { useFormContext } from "react-hook-form";
-import { cn } from "@/utils";
+import { cn } from "@/lib/utils";
 
 interface Props extends React.ComponentProps<"div"> {
   data:
@@ -35,10 +35,11 @@ const SelectField = ({ data, fieldName, className, ...restProps }: Props) => {
           variant="outline"
           size="small"
           className={cn(
-            "justify-start font-normal",
-            watch(fieldName) == dataType && "bg-lightBlue-secondary text-white"
+            "sm:w-auto justify-start font-normal",
+            watch(fieldName) == dataType && "bg-lightBlue-main"
           )}
           onClick={() => setValue(fieldName, dataType)}
+          fullWidth
         >
           {String.fromCharCode("a".charCodeAt(0) + index)}
           {". "}

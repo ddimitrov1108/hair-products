@@ -1,14 +1,30 @@
-export interface QuestionsForm {
-  step: number;
-  isLoading: boolean;
-}
-
-export interface Questions {
+export interface FormQuestions {
   hairType: string;
   hairWash: string;
   hairProducts: string;
   hairConcern: string;
   hairColor: string;
+}
+
+export interface Product {
+  id: number;
+  title: string;
+  body_html: string;
+  product_type: string;
+  tags: string[];
+  variants: [
+    {
+      price: string;
+    }
+  ];
+  images: [
+    {
+      id: number;
+      src: string;
+      width: number;
+      height: number;
+    }
+  ];
 }
 
 export enum HairType {

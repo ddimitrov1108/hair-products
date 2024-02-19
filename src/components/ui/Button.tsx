@@ -1,4 +1,4 @@
-import { cn } from "@/utils";
+import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 
 type ButtonVariants = "primary" | "outline" | "ghost";
@@ -35,6 +35,7 @@ const buttonCva = cva("button", {
 });
 
 const Button = ({
+  type = "button",
   children,
   variant = "primary",
   size = "medium",
@@ -44,8 +45,9 @@ const Button = ({
 }: Props) => {
   return (
     <button
+      type={type}
       className={cn(
-        "select-none transition-all duration-200 ease-in text-black font-medium flex items-center justify-center rounded-lg border min-w-[189px] px-3.5 py-2.5",
+        "select-none transition-colors duration-200 ease-in text-black font-medium flex items-center justify-center rounded-lg border min-w-[189px] px-3.5 py-2.5",
         buttonCva({ intent: variant, size: size }),
         fullWidth ? "w-full" : "w-fit",
         className

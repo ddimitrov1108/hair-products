@@ -1,4 +1,4 @@
-import { HairColor } from "@/interfaces";
+import { HairColor } from "@/lib/interfaces";
 import Header from "@/components/ui/Header";
 import StepperContext from "@/components/context/StepperContext";
 import { useContext, useEffect } from "react";

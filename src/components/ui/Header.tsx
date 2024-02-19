@@ -1,4 +1,4 @@
-import { cn } from "@/utils";
+import { cn } from "@/lib/utils";
 
 const Header = ({
   className,
@@ -8,7 +8,7 @@ const Header = ({
   return (
     <h1
       className={cn(
-        "max-w-[590px] text-center text-header text-2xl md:text-[42px] leading-tight",
+        "max-w-[590px] text-center text-header text-2xl md:text-3xl lg:text-[42px] leading-tight",
         className
       )}
       {...restProps}

@@ -1,4 +1,4 @@
-import { HairProductBenefit } from "@/interfaces";
+import { HairProductBenefit } from "@/lib/interfaces";
 import Header from "@/components/ui/Header";
 import StepperContext from "@/components/context/StepperContext";
 import { useContext, useEffect } from "react";
