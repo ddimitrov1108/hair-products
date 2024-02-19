@@ -1,8 +1,8 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { Outlet } from "react-router-dom";
 import { Questions } from "../../interfaces";
-import { useEffect } from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
+import StepperProvider from "@/components/providers/StepperProvider";
 
 const TriviaLayout = () => {
   const form = useForm<Questions>({
@@ -19,23 +19,19 @@ const TriviaLayout = () => {
     console.log(data);
   };
 
-  useEffect(() => {
-    console.log(form.getValues());
-  }, [form]);
-
   return (
-    <div className="grid items-center justify-center h-screen w-full">
-      <FormProvider {...form}>
-        <div className="w-full flex gap-8 justify-between">
-          <form onSubmit={form.handleSubmit(onSubmit)}>
-            <Outlet />
-          </form>
-
-          <div className="w-28 h-28">
-            <CircularProgressbar value={20} text={`1/5`} strokeWidth={4} />
-          </div>
+    <div className="relative grid items-center justify-center h-screen w-full">
+      <StepperProvider>
+        <div className="max-w-[985px]">
+          <FormProvider {...form}>
+            <div className="w-full flex gap-8 justify-between">
+              <form onSubmit={form.handleSubmit(onSubmit)}>
+                <Outlet />
+              </form>
+            </div>
+          </FormProvider>
         </div>
-      </FormProvider>
+      </StepperProvider>
     </div>
   );
 };

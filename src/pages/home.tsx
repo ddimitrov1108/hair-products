@@ -1,5 +1,6 @@
+import Button from "@/components/ui/Button";
+import Header from "@/components/ui/Header";
 import { NavLink } from "react-router-dom";
-import Button from "../components/Button";
 
 const Home = () => {
   return (
@@ -13,9 +14,7 @@ const Home = () => {
       <div className="absolute w-full h-full top-0 left-0 right-0 bottom-0 bg-[#000]/[0.35]"></div>
 
       <div className="z-10 text-white max-w-[590px] text-center flex flex-col items-center gap-4">
-        <h1 className="text-header text-2xl md:text-5xl leading-tight">
-          Build a self care routine suitable for you
-        </h1>
+        <Header>Build a self care routine suitable for you</Header>
 
         <p className="max-w-[327px] text-center font-light">
           Take out test to get a personalised self care routine based on your
@@ -23,7 +22,7 @@ const Home = () => {
         </p>
 
         <NavLink to="/trivia/q1">
-          <Button variant="secondary" className="min-w-[174px] h-[47px] mt-2">
+          <Button className="mt-2">
             Start the quiz
           </Button>
         </NavLink>

@@ -1,30 +1,24 @@
-import { useFormContext } from "react-hook-form";
-import { HairWashFrequency } from "../../constants";
-import clsx from "clsx";
+import { HairWashFrequency } from "@/interfaces";
+import Header from "@/components/ui/Header";
+import StepperContext from "@/components/context/StepperContext";
+import { useContext, useEffect } from "react";
+import TriviaNavLinks from "@/components/TriviaNavLinks";
+import SelectField from "@/components/SelectField";
 
 const Q2 = () => {
-  const { watch, setValue } = useFormContext();
+  const stepperContext = useContext(StepperContext);
+
+  useEffect(() => {
+    stepperContext?.setStep(2);
+  }, []);
 
   return (
-    <div className="grid gap-14">
-      <h1>Whats your hair type or texture?</h1>
-      <div className="w-full flex flex-wrap gap-[10px]">
-        {Object.values(HairWashFrequency).map((hairWash, index) => (
-          <button
-            type="button"
-            className={clsx(
-              "rounded-lg border-2 px-3.5 w-[189px] py-2 text-left",
-              hairWash === watch("hairWash")
-                ? "border-cyan-400"
-                : "border-slate-200"
-            )}
-            onClick={() => setValue("hairWash", hairWash)}
-          >
-            {String.fromCharCode(97 + index)}. {hairWash}
-          </button>
-        ))}
-      </div>
+    <div className="flex flex-col gap-8 items-center">
+      <Header className="w-full">How often do you wash your hair?</Header>
+      <SelectField fieldName="hairWash" data={Object.values(HairWashFrequency)} />
+      <TriviaNavLinks back="/trivia/q1" next="/trivia/q3" />
     </div>
   );
 };
+
 export default Q2;

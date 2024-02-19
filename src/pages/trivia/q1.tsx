@@ -1,56 +1,22 @@
-import { useFormContext } from "react-hook-form";
-import { HairType } from "../../constants";
-import { NavLink } from "react-router-dom";
-import Button from "../../components/Button";
-
-// const fetchData = async () => {
-//   const res = await fetch(
-//     "https://jeval.com.au/collections/hair-care/products.json?page=1"
-//   );
-
-//   if (!res.ok) return null;
-
-//   const data = await res.json();
-//   const tags = new Set();
-
-//   data.products.map((product: { id: number; tags: string[] }) =>
-//     tags.add(...product.tags)
-//   );
-
-//   console.log(tags);
-
-//   return null;
-// };
+import { HairType } from "@/interfaces";
+import Header from "@/components/ui/Header";
+import StepperContext from "@/components/context/StepperContext";
+import { useContext, useEffect } from "react";
+import TriviaNavLinks from "@/components/TriviaNavLinks";
+import SelectField from "@/components/SelectField";
 
 const Q1 = () => {
-  const { watch, setValue } = useFormContext();
+  const stepperContext = useContext(StepperContext);
 
-  // useEffect(() => {
-  //   const fetchDataFromServer = async () => await fetchData();
-  //   fetchDataFromServer();
-  // }, []);
+  useEffect(() => {
+    stepperContext?.setStep(1);
+  }, []);
 
   return (
-    <div className="grid gap-14">
-      <h1>Whats your hair type or texture?</h1>
-      <div className="w-full flex flex-wrap gap-[10px]">
-        {Object.values(HairType).map((hairType, index) => (
-          <Button
-            className={
-              hairType === watch("hairType")
-                ? "border-lightBlue"
-                : "border-slate-200"
-            }
-            onClick={() => setValue("hairType", hairType)}
-          >
-            {String.fromCharCode("a".charCodeAt(0) + index)}.
-            {' '}
-            <span className="capitalize">{hairType}</span>
-          </Button>
-        ))}
-      </div>
-      <NavLink to="/messages">Messages</NavLink>;
-      <button type="submit">Test Form</button>
+    <div className="flex flex-col gap-8 items-center">
+      <Header className="w-full">Whats your hair type or texture?</Header>
+      <SelectField fieldName="hairType" data={Object.values(HairType)} />
+      <TriviaNavLinks back="/" next="/trivia/q2" />
     </div>
   );
 };
