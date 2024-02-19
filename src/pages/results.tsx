@@ -7,10 +7,10 @@ import Button from "@/components/ui/Button";
 import Slider from "react-slick";
 
 const fetchData = async (formData: FormQuestions) => {
-  if(!process.env.API_URL)
+  if(!import.meta.env.VITE_API_URL)
     return [];
 
-  const res = await fetch(process.env.API_URL);
+  const res = await fetch(import.meta.env.VITE_API_URL);
 
   if (!res.ok) throw new Error("Failed to fetch data");
 
