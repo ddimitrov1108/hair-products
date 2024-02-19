@@ -154,7 +154,7 @@ const Results = () => {
           <NavLink to="/trivia/q1">
             <Button
               variant="outline"
-              className="border-2 border-white text-white "
+              className="border-white text-white"
             >
               Retake the quiz
             </Button>
