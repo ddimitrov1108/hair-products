@@ -7,9 +7,10 @@ import Button from "@/components/ui/Button";
 import Slider from "react-slick";
 
 const fetchData = async (formData: FormQuestions) => {
-  const res = await fetch(
-    "https://jeval.com.au/collections/hair-care/products.json?page=1"
-  );
+  if(!process.env.API_URL)
+    return [];
+
+  const res = await fetch(process.env.API_URL);
 
   if (!res.ok) throw new Error("Failed to fetch data");
 
