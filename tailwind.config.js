@@ -5,10 +5,7 @@ export default {
     extend: {
       colors: {
         black: "#1C2635",
-        lightBlue: {
-          light: "#C3EDFF",
-          main: "#5BC1ED",
-        },
+        lightBlue: { main: "#C3EDFF", secondary: "#5BC1ED" },
       },
     },
   },
