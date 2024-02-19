@@ -6,7 +6,7 @@ export interface FormQuestions {
   hairColor: string;
 }
 
-export interface Product {
+export interface ApiProduct {
   id: number;
   title: string;
   body_html: string;
@@ -17,6 +17,20 @@ export interface Product {
       price: string;
     }
   ];
+  images: [
+    {
+      id: number;
+      src: string;
+      width: number;
+      height: number;
+    }
+  ];
+}
+
+export interface Product {
+  id: number;
+  title: string;
+  price: string;
   images: [
     {
       id: number;

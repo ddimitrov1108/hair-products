@@ -4,10 +4,10 @@ import { RouterProvider } from "react-router-dom";
 import router from "./router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import "./index.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "react-circular-progressbar/dist/styles.css";
-import { register } from "swiper/element/bundle";
 
-register();
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

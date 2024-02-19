@@ -18,3 +18,8 @@ body {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
 }
+
+.slick-track {
+  margin-left: auto !important;
+  margin-right: auto !important;;
+}

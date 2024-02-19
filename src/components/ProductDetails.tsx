@@ -1,23 +1,56 @@
 import { Product } from "@/lib/interfaces";
+import { cn } from "@/lib/utils";
+import { Heart } from "lucide-react";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
-interface Props {
+interface Props extends React.ComponentProps<"div"> {
   product: Product;
 }
 
-const ProductDetails = ({ product }: Props) => {
+const ProductDetails = ({ product, className, ...restProps }: Props) => {
+  const [favorites, setFavorites] = useLocalStorage<Product[]>(
+    "fav_products",
+    []
+  );
+
+  const onClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (favorites.find((p: Product) => p.id === product.id)) {
+      setFavorites(favorites.filter((p: Product) => p.id !== product.id));
+    } else setFavorites([...favorites, product]);
+  };
+
   return (
-    <div className="relative transition-all hover:shadow-lg border border-slate-100 grid gap-3 bg-white min-w-[300px] sm:min-w-[350px] pb-4 h-full w-full rounded-lg overflow-hidden">
+    <div
+      className={cn(
+        "relative flex flex-col gap-3 justify-center items-center transition-all hover:shadow-md border border-slate-100 bg-white w-full h-full xl:max-w-[350px] pb-4 rounded-lg overflow-hidden",
+        className
+      )}
+      {...restProps}
+    >
+      <button
+        type="button"
+        className={cn(
+          "absolute top-4 right-4 rounded-full p-1",
+          favorites.find((p: Product) => p.id === product.id)
+            ? "text-red-500"
+            : "text-slate-500"
+        )}
+        onClick={onClickHandler}
+      >
+        <Heart size={20} />
+      </button>
+
       <img
         src={product.images[0].src}
         alt={product.images[0].src}
-        className="p-10 object-cover rounded-lg overflow-hidden"
+        className="p-12 max-w-full object-contain"
       />
 
-      <div className="text-header flex flex-col justify-center items-center gap-1.5">
-        <p className="text-xl max-w-[280px] truncate ...">{product.title}</p>
-        <span className="font-normal text-xl">
-          ${product.variants[0].price}
-        </span>
+      <div className="flex flex-col justify-center items-center gap-1.5">
+        <p className="max-w-[280px] px-4 truncate">{product.title}</p>
+        <span>${product.price}</span>
       </div>
     </div>
   );
