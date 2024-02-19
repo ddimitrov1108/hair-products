@@ -79,7 +79,7 @@ const Home = () => {
           {favorites &&
             favorites.length > 0 &&
             favorites.map((product: Product) => (
-              <div key={product.id} className="slick-slide px-4">
+              <div key={product.id} className="slick-slide px-4 pb-2.5">
                 <ProductDetails product={product} />
               </div>
             ))}

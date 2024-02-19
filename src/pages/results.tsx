@@ -169,7 +169,7 @@ const Results = () => {
           className="cursor-grab pb-20 px-0 container max-w-[1100px] z-20 relative -mt-10 md:-mt-14 w-full overflow-hidden"
         >
           {products.map((product: Product) => (
-            <div key={product.id} className="slick-slide px-4">
+            <div key={product.id} className="slick-slide px-4 pb-2.5">
               <ProductDetails product={product} />
             </div>
           ))}
