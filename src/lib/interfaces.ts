@@ -1,4 +1,4 @@
-export interface FormQuestions {
+export interface IFormQuestions {
   hairType: string;
   hairWash: string;
   hairProducts: string;
@@ -6,7 +6,7 @@ export interface FormQuestions {
   hairColor: string;
 }
 
-export interface ApiProduct {
+export interface IApiProduct {
   id: number;
   title: string;
   body_html: string;
@@ -27,7 +27,7 @@ export interface ApiProduct {
   ];
 }
 
-export interface Product {
+export interface IProduct {
   id: number;
   title: string;
   price: string;

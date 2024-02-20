@@ -1,11 +1,11 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { Outlet, useNavigate } from "react-router-dom";
-import { FormQuestions } from "../../lib/interfaces";
+import { IFormQuestions } from "../../lib/interfaces";
 import StepperProvider from "@/components/providers/StepperProvider";
 
 const TriviaLayout = () => {
   const navigate = useNavigate();
-  const form = useForm<FormQuestions>({
+  const form = useForm<IFormQuestions>({
     defaultValues: {
       hairType: "",
       hairWash: "",
@@ -15,7 +15,7 @@ const TriviaLayout = () => {
     },
   });
 
-  const onSubmit = (data: FormQuestions) => {
+  const onSubmit = (data: IFormQuestions) => {
     navigate("/results", { state: { formData: data }, replace: true });
   };
 
