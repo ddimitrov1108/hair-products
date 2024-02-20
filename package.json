@@ -25,6 +25,7 @@
     "react-router-dom": "^6.22.1",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
+    "sonner": "^1.4.0",
     "sort-by": "^1.2.0",
     "tailwind-merge": "^2.2.1",
     "zod": "^3.22.4"
