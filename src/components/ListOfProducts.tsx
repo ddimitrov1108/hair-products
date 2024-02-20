@@ -11,27 +11,16 @@ interface Props {
 const ListOfProducts = ({ products, className }: Props) => {
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
     responsive: [
       {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: false,
-          dots: true,
-        },
-      },
-      {
         breakpoint: 991,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: false,
-          dots: false,
         },
       },
       {
@@ -39,8 +28,6 @@ const ListOfProducts = ({ products, className }: Props) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: false,
-          dots: false,
         },
       },
     ],
@@ -50,7 +37,7 @@ const ListOfProducts = ({ products, className }: Props) => {
     <Slider
       {...settings}
       className={cn(
-        "cursor-grab pb-20 px-0 container max-w-[1100px] z-20 relative -mt-10 md:-mt-14 w-full overflow-hidden",
+        "cursor-grab pb-14 px-0 container max-w-[1100px] z-20 relative -mt-10 md:-mt-14 w-full overflow-hidden",
         className
       )}
     >

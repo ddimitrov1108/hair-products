@@ -24,7 +24,7 @@ const Product = ({ product, className, ...restProps }: Props) => {
   return (
     <div
       className={cn(
-        "relative flex flex-col gap-3 justify-center items-center transition-all hover:shadow-md border border-slate-100 bg-white w-full h-full xl:max-w-[350px] pb-4 rounded-lg overflow-hidden",
+        "cursor-pointer relative flex flex-col gap-3 justify-center items-center transition-all shadow-md lg:shadow-none lg:hover:shadow-md border border-slate-100 bg-white w-full h-full xl:max-w-[350px] pb-4 rounded-lg overflow-hidden",
         className
       )}
       {...restProps}
@@ -32,7 +32,7 @@ const Product = ({ product, className, ...restProps }: Props) => {
       <button
         type="button"
         className={cn(
-          "absolute top-2 right-2 rounded-full p-2",
+          "transition-all absolute top-2 right-2 rounded-full p-1.5 hover:bg-slate-100/80",
           favorites.find((p: IProduct) => p.id === product.id)
             ? "text-red-500"
             : "text-slate-500"
@@ -49,7 +49,9 @@ const Product = ({ product, className, ...restProps }: Props) => {
       />
 
       <div className="flex flex-col justify-center items-center gap-1.5">
-        <p className="max-w-[280px] px-4 truncate">{product.title}</p>
+        <p title={product.title} className="text-center max-w-[280px] px-4 truncate ...">
+          {product.title}
+        </p>
         <span>${product.price}</span>
       </div>
     </div>
