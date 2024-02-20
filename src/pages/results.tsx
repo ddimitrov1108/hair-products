@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import Button from "@/components/ui/Button";
 import PageLanding from "@/components/ui/PageLanding";
 import ListOfProducts from "@/components/ListOfProducts";
-import fetchData from "@/lib/fetcher";
+import fetcher from "@/lib/fetcher";
 
 const Results = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Results = () => {
     data: products,
     isLoading,
     isError,
-  } = useQuery(["products", formData], () => fetchData(formData));
+  } = useQuery(["products", formData], () => fetcher(formData));
 
   if (isError) navigate("/", { replace: true });
 

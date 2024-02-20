@@ -1,6 +1,6 @@
 import { IApiProduct, IFormQuestions } from "./interfaces";
 
-const fetchData = async (formData: IFormQuestions) => {
+const fetcher = async (formData: IFormQuestions) => {
   if (!import.meta.env.VITE_API_URL) return [];
 
   const res = await fetch(import.meta.env.VITE_API_URL);
@@ -70,4 +70,4 @@ const fetchData = async (formData: IFormQuestions) => {
   return filteredProducts;
 };
 
-export default fetchData;
+export default fetcher;
