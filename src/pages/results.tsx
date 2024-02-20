@@ -1,21 +1,19 @@
-import { ApiProduct, FormQuestions, Product } from "@/lib/interfaces";
+import { IApiProduct, IFormQuestions } from "@/lib/interfaces";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
-import ProductDetails from "@/components/ProductDetails";
-import Header from "@/components/ui/Header";
 import Button from "@/components/ui/Button";
-import Slider from "react-slick";
+import PageLanding from "@/PageLanding";
+import ListOfProducts from "@/components/ListOfProducts";
 
-const fetchData = async (formData: FormQuestions) => {
-  if(!import.meta.env.VITE_API_URL)
-    return [];
+const fetchData = async (formData: IFormQuestions) => {
+  if (!import.meta.env.VITE_API_URL) return [];
 
   const res = await fetch(import.meta.env.VITE_API_URL);
 
   if (!res.ok) throw new Error("Failed to fetch data");
 
   const data: {
-    products: ApiProduct[];
+    products: IApiProduct[];
   } = await res.json();
 
   const formDataLower = {
@@ -80,44 +78,7 @@ const fetchData = async (formData: FormQuestions) => {
 const Results = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const formData: FormQuestions = location.state?.formData;
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 991,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: false,
-        },
-      },
-      {
-        breakpoint: 639,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false,
-        },
-      },
-    ],
-  };
+  const formData: IFormQuestions = location.state?.formData;
 
   // Use react-query's useQuery hook for data fetching
   const {
@@ -126,54 +87,53 @@ const Results = () => {
     isError,
   } = useQuery(["products", formData], () => fetchData(formData));
 
-  if (isLoading) return <div>Loading...</div>;
   if (isError) navigate("/", { replace: true });
 
   return (
     <>
-      <div className="px-2 grid items-center justify-center w-full h-[539px] relative">
-        <img
-          src="/results-bg.jpg"
-          alt="results-bg"
-          className="absolute w-full h-[539px] object-cover"
-        />
+      <PageLanding
+        headerTitle="Build your everyday self-care routine."
+        description={`
+        Perfect for if you're looking for soft, nourished skin, our
+        moisturizing body washes are made with skin-natural nutrients that
+        work with your skin to replenish moisture. With a light formula, the
+        bubbly lather leaves your skin feeling cleansed and cared for. And
+        by choosing relaxing fragrances, you can add a moment of calm to the
+        end of your day.`}
+        image={{ src: "/results-bg.jpg", alt: "results-bg" }}
+        containerClassName="gap-8"
+      >
+        <NavLink to="/trivia/q1">
+          <Button variant="outline" className="border-white text-white">
+            Retake the quiz
+          </Button>
+        </NavLink>
+      </PageLanding>
 
-        <div className="absolute w-full h-full top-0 left-0 right-0 bottom-0 bg-[#000]/[0.35]"></div>
-
-        <div className="z-10 text-white max-w-[590px] text-center flex flex-col items-center gap-8">
-          <Header>Build your everyday self-care routine.</Header>
-
-          <p className="text-center font-light">
-            Perfect for if you're looking for soft, nourished skin, our
-            moisturizing body washes are made with skin-natural nutrients that
-            work with your skin to replenish moisture. With a light formula, the
-            bubbly lather leaves your skin feeling cleansed and cared for. And
-            by choosing relaxing fragrances, you can add a moment of calm to the
-            end of your day.
-          </p>
-
-          <NavLink to="/trivia/q1">
-            <Button
-              variant="outline"
-              className="border-white text-white"
+      {isLoading ? (
+        <div className="container max-w-[1100px] grid items-center justify-center py-20">
+          <div role="status">
+            <svg
+              aria-hidden="true"
+              className="w-8 h-8 text-gray-200 animate-spin fill-lightBlue-secondary"
+              viewBox="0 0 100 101"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              Retake the quiz
-            </Button>
-          </NavLink>
+              <path
+                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                fill="currentColor"
+              />
+              <path
+                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                fill="currentFill"
+              />
+            </svg>
+            <span className="sr-only">Loading...</span>
+          </div>
         </div>
-      </div>
-
-      {products && products.length > 0 && (
-        <Slider
-          {...settings}
-          className="cursor-grab pb-20 px-0 container max-w-[1100px] z-20 relative -mt-10 md:-mt-14 w-full overflow-hidden"
-        >
-          {products.map((product: Product) => (
-            <div key={product.id} className="slick-slide px-4 pb-2.5">
-              <ProductDetails product={product} />
-            </div>
-          ))}
-        </Slider>
+      ) : (
+        <ListOfProducts products={products} />
       )}
     </>
   );
