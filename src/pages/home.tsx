@@ -1,4 +1,4 @@
-import PageLanding from "@/PageLanding";
+import PageLanding from "@/components/ui/PageLanding";
 import ListOfProducts from "@/components/ListOfProducts";
 import Button from "@/components/ui/Button";
 import { IProduct } from "@/lib/interfaces";

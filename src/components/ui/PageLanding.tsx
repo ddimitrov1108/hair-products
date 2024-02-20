@@ -1,5 +1,5 @@
-import Header from "./components/ui/Header";
-import { cn } from "./lib/utils";
+import Header from "./Header";
+import { cn } from "../../lib/utils";
 
 interface Props extends React.ComponentProps<"div"> {
   headerTitle: React.ReactNode;

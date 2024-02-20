@@ -2,7 +2,7 @@ import { IFormQuestions } from "@/lib/interfaces";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import Button from "@/components/ui/Button";
-import PageLanding from "@/PageLanding";
+import PageLanding from "@/components/ui/PageLanding";
 import ListOfProducts from "@/components/ListOfProducts";
 import fetchData from "@/lib/fetcher";
 
