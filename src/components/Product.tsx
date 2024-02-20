@@ -32,7 +32,7 @@ const Product = ({ product, className, ...restProps }: Props) => {
       <button
         type="button"
         className={cn(
-          "absolute top-4 right-4 rounded-full p-1",
+          "absolute top-2 right-2 rounded-full p-2",
           favorites.find((p: IProduct) => p.id === product.id)
             ? "text-red-500"
             : "text-slate-500"
