@@ -67,7 +67,14 @@ const fetcher = async (formData: IFormQuestions) => {
       images,
     }));
 
-  return filteredProducts;
+  const uniqueProducts = Array.from(
+    new Set(filteredProducts.map((product) => product.id))
+  );
+  const uniqueData = uniqueProducts.map((id) =>
+    filteredProducts.find((product) => product.id === id)
+  );
+
+  return uniqueData;
 };
 
 export default fetcher;
