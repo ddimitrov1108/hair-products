@@ -41,7 +41,7 @@ const ListOfProducts = ({ products, className }: Props) => {
     <Slider
       {...settings}
       className={cn(
-        "cursor-grab pb-12 px-0 container max-w-[1100px] z-20 relative -mt-10 md:-mt-14 w-full overflow-hidden",
+        "cursor-pointer pb-12 px-0 container max-w-[1100px] z-20 relative -mt-10 md:-mt-14 w-full overflow-hidden",
         className
       )}
     >
